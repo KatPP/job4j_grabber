@@ -2,6 +2,11 @@ package main;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        String idea = "I like Java!";
+        System.out.println(idea);
+        idea += " But I am a newbie. ";
+        int year = 2022;
+        idea += year;
+        System.out.println(idea);
     }
 }
