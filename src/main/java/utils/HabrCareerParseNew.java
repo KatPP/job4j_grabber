@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
-public class HabrCareerParse {
+public class HabrCareerParseNew {
     private static final String SOURCE_LINK = "https://career.habr.com";
     public static final String PREFIX = "/vacancies?page=";
     public static final String SUFFIX = "&q=Java%20developer&type=all";
