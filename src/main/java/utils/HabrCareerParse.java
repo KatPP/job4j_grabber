@@ -30,11 +30,29 @@ public class HabrCareerParse {
                 String date = datetime.child(0).attr("datetime");
                 String vacancyName = titleElement.text();
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
+
+                String description = retrieveDescription(link);
+
                 OffsetDateTime offsetDateTime = dateTimeParser.parse(date);
                 String formattedDate = dateTimeParser.format(offsetDateTime);
-
-                System.out.printf("Вакансия: - %s. Дата публикации: - %s. Ссылка: - %s%n", vacancyName, formattedDate, link);
+                System.out.printf("Вакансия: - %s. Дата публикации: - %s. Ссылка: - %s. Описание: %s%n", vacancyName, formattedDate, link, description);
             });
+        }
+    }
+
+    private static String retrieveDescription(String link) {
+        try {
+            Document document = Jsoup.connect(link).get();
+            Element descriptionElement = document.selectFirst(".vacancy-description__text");
+
+            if (descriptionElement != null) {
+                return descriptionElement.text();
+            } else {
+                return "Описание не найдено";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Ошибка при загрузке описания";
         }
     }
 }
