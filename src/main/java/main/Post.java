@@ -19,11 +19,11 @@ public class Post {
     }
 
     /**
-     * Убрал поле created так как оно содержит текущее время создания объекта,
-     * соответственно оно по идее будет различаться для каждого экземпляра,
-     * даже в случае того что если все остальные поля будут одинаковы.
-     * */
-
+     * Убрал поля title, description и created из equals() и hashCode(),
+     * так как для определения уникальности экземпляра достаточно id и link.
+     * Это позволяет избежать ненужного сравнения полей, которые могут
+     * меняться или не быть уникальными.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -33,15 +33,12 @@ public class Post {
             return false;
         }
         Post post = (Post) o;
-        return id == post.id
-                && Objects.equals(title, post.title)
-                && Objects.equals(link, post.link)
-                && Objects.equals(description, post.description);
+        return id == post.id && Objects.equals(link, post.link);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, link, description);
+        return Objects.hash(id, link);
     }
 
     @Override
