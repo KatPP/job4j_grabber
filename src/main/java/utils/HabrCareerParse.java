@@ -1,5 +1,6 @@
 package utils;
 
+import model.Post;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

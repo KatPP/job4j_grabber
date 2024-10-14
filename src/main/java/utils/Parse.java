@@ -1,5 +1,7 @@
 package utils;
 
+import model.Post;
+
 import java.io.IOException;
 import java.util.List;
 
