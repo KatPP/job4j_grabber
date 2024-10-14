@@ -1,5 +1,6 @@
 package utils;
 
+import grabber.Parse;
 import model.Post;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
