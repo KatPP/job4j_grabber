@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Properties;
 
 public class PsqlStore implements Store {
+
     private final Connection connection;
+
     public PsqlStore(Properties config) throws SQLException {
         try {
             Class.forName(config.getProperty("driver-class-name"));
@@ -24,6 +26,7 @@ public class PsqlStore implements Store {
                 config.getProperty("db.password")
         );
     }
+
     @Override
     public void save(Post post) {
         try (PreparedStatement statement =
@@ -41,9 +44,11 @@ public class PsqlStore implements Store {
                 }
             }
         } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
+
     private Post createPost(ResultSet resultSet) throws SQLException {
         return new Post(
                 resultSet.getInt("id"),
@@ -53,6 +58,7 @@ public class PsqlStore implements Store {
                 resultSet.getTimestamp("created").toLocalDateTime()
         );
     }
+
     @Override
     public List<Post> getAll() {
         List<Post> posts = new ArrayList<>();
@@ -67,6 +73,7 @@ public class PsqlStore implements Store {
         }
         return posts;
     }
+
     @Override
     public Post findById(int id) {
         Post post = null;
@@ -82,12 +89,14 @@ public class PsqlStore implements Store {
         }
         return post;
     }
+
     @Override
     public void close() throws Exception {
         if (connection != null) {
             connection.close();
         }
     }
+
     public static void main(String[] args) {
         try (InputStream input = PsqlStore.class.getClassLoader()
                 .getResourceAsStream("app.properties")) {
