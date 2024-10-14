@@ -19,37 +19,10 @@ public class HabrCareerParse implements Parse {
     public static final String SUFFIX = "&q=Java%20developer&type=all";
     public static final int NUMBER_PAGES = 5;
     public DateTimeParser dateTimeParser;
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> post = new ArrayList<>();
 
     public HabrCareerParse(DateTimeParser dateTimeParser) {
         this.dateTimeParser = dateTimeParser;
-    }
-
-    public static void main(String[] args) throws IOException {
-        HabrCareerParse habrCareerParse = new HabrCareerParse(new HabrCareerDateTimeParser());
-        for (int pageNumber = 1; pageNumber <= NUMBER_PAGES; pageNumber++) {
-            String fullLink = "%s%s%d%s".formatted(SOURCE_LINK, PREFIX, pageNumber, SUFFIX);
-            Connection connection = Jsoup.connect(fullLink);
-            Document document = connection.get();
-            Elements rows = document.select(".vacancy-card__inner");
-            rows.forEach(row -> {
-                Element titleElement = row.select(".vacancy-card__title").first();
-                Element linkElement = titleElement.child(0);
-                String vacancyName = titleElement.text();
-                String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
-                Element dateElement = row.select(".vacancy-card__date").first();
-                Element dateClass = dateElement.child(0);
-                String date = dateClass.attr("datetime");
-                System.out.printf("%s %s %s%n", vacancyName, link, habrCareerParse.dateTimeParser.parse(date));
-                System.out.println("ОПИСАНИЕ ВАКАНСИИ");
-
-                try {
-                    System.out.println(habrCareerParse.retrieveDescription(link));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        }
     }
 
     private String retrieveDescription(String link) throws IOException {
@@ -89,12 +62,12 @@ public class HabrCareerParse implements Parse {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    posts.add(new Post(id++, vacancyName, linkVacancy, description, habrCareerParse.dateTimeParser.parse(date).toLocalDateTime()));
+                    post.add(new Post(id++, vacancyName, description, linkVacancy, habrCareerParse.dateTimeParser.parse(date).toLocalDateTime()));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return posts;
+        return post;
     }
 }

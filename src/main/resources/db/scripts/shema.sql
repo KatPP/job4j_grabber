@@ -1,8 +1,7 @@
-create table post (
-                      id serial primary key,
-                      name varchar(100),
-                      text text,
-                      link text,
-                      created timestamp,
-                      CONSTRAINT link_unique UNIQUE (link)
+CREATE TABLE IF NOT EXISTS post (
+                                    id serial primary key,
+                                    name varchar(255),
+                                    text text,
+                                    link text unique,
+                                    created timestamp
 );
