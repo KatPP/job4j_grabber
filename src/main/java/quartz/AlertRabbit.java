@@ -16,7 +16,7 @@ import static org.quartz.SimpleScheduleBuilder.*;
 public class AlertRabbit {
 
     public static int getInterval() {
-        try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
+        try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             return Integer.parseInt(config.getProperty("rabbit.interval"));
@@ -27,7 +27,7 @@ public class AlertRabbit {
 
     public static Connection initConnection() {
         try (InputStream input = AlertRabbit.class.getClassLoader()
-                .getResourceAsStream("rabbit.properties")) {
+                .getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(input);
             Class.forName(config.getProperty("driver-class-name"));
