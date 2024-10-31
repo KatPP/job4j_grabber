@@ -7,6 +7,7 @@ package ocp;
 
 class ReportGenerator {
     public String generateReport(String type) {
+
         if (type.equals("HR")) {
             return "HR Report";
         } else if (type.equals("Developer")) {

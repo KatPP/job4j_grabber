@@ -8,8 +8,9 @@ package ocp;
 class PaymentProcessor {
     public void processPayment(String paymentType) {
         if (paymentType.equals("CreditCard")) {
+            System.out.println("Обработка платежа через кредитную карту.");
         } else if (paymentType.equals("PayPal")) {
-
+            System.out.println("Обработка платежа через PayPal.");
         }
     }
 }

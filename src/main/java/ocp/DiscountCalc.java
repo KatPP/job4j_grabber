@@ -5,12 +5,12 @@ package ocp;
  * Это нарушает принцип OCP. Вместо этого можно использовать стратегию или полиморфизм для реализации различных типов скидок.
  */
 
-class DiscountCalculator {
+class DiscountCalc {
     public double calculateDiscount(String customerType, double amount) {
         if (customerType.equals("Regular")) {
-            return amount * 0.1; // 10% скидка
+            return amount * 0.1;
         } else if (customerType.equals("VIP")) {
-            return amount * 0.2; // 20% скидка
+            return amount * 0.2;
         }
         return 0;
     }
