@@ -74,7 +74,7 @@ public class Lsp {
     }
 
     class Bicycle extends Vehicle {
-        // Предположим, что велосипед не имеет двигателя
+
         @Override
         public void start() {
             throw new UnsupportedOperationException("Bicycle doesn't start like a vehicle");
