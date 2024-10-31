@@ -8,13 +8,14 @@ import report.formatter.ReportDateTimeParser;
 import report.model.Employee;
 import report.store.MemoryStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReportEngineTest {
     @Test
-    public void whenOldGenerated() {
+    public void whenOldGenerated() throws JAXBException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);

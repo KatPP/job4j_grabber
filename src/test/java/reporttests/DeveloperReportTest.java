@@ -8,6 +8,7 @@ import report.model.Employee;
 import report.store.DeveloperReport;
 import report.store.MemoryStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DeveloperReportTest {
 
     @Test
-    public void whenCorrectCSVStyleReportGenerated() {
+    public void whenCorrectCSVStyleReportGenerated() throws JAXBException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
@@ -34,7 +35,7 @@ public class DeveloperReportTest {
     }
 
     @Test
-    public void whenMultipleEmployeesCSVStyleReportGenerated() {
+    public void whenMultipleEmployeesCSVStyleReportGenerated() throws JAXBException  {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker1 = new Employee("Ivan", now, now, 100);
@@ -62,7 +63,7 @@ public class DeveloperReportTest {
     }
 
     @Test
-    public void whenNoEmployeesCSVStyleReportGenerated() {
+    public void whenNoEmployeesCSVStyleReportGenerated() throws JAXBException  {
         MemoryStore store = new MemoryStore();
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         Report engine = new DeveloperReport(store, parser);

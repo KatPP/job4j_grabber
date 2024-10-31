@@ -8,6 +8,7 @@ import report.formatter.ReportDateTimeParser;
 import report.model.Employee;
 import report.store.MemoryStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +18,7 @@ import static report.currency.Currency.USD;
 public class AccountantReportTest {
 
     @Test
-    public void whenCorrectUSDReportGenerated() {
+    public void whenCorrectUSDReportGenerated() throws JAXBException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
@@ -37,7 +38,7 @@ public class AccountantReportTest {
     }
 
     @Test
-    public void whenNoEmployeesReportGenerated() {
+    public void whenNoEmployeesReportGenerated() throws JAXBException  {
         MemoryStore store = new MemoryStore();
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         Report engine = new AccountantReport(store, parser, EUR);
@@ -48,7 +49,7 @@ public class AccountantReportTest {
     }
 
     @Test
-    public void whenCorrectEURReportGenerated() {
+    public void whenCorrectEURReportGenerated() throws JAXBException  {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);

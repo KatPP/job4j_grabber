@@ -8,6 +8,7 @@ import report.model.Employee;
 import report.store.HrReport;
 import report.store.MemoryStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HrReportTest {
 
     @Test
-    public void whenCorrectHRReportGenerated() {
+    public void whenCorrectHRReportGenerated() throws JAXBException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
@@ -37,7 +38,7 @@ public class HrReportTest {
     }
 
     @Test
-    public void whenMultipleEmployeesHRReportGenerated() {
+    public void whenMultipleEmployeesHRReportGenerated() throws JAXBException  {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker1 = new Employee("Ivan", now, now, 300);
@@ -65,7 +66,7 @@ public class HrReportTest {
     }
 
     @Test
-    public void whenNoEmployeesHRReportGenerated() {
+    public void whenNoEmployeesHRReportGenerated() throws JAXBException  {
         MemoryStore store = new MemoryStore();
         Report engine = new HrReport(store);
 
