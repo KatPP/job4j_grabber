@@ -10,7 +10,7 @@ interface Shape {
 
     void resize();
 
-    void rotate(); // Проблема: не все формы могут вращаться
+    void rotate();
 }
 
 class Circle implements Shape {
@@ -27,7 +27,7 @@ class Circle implements Shape {
 
     @Override
     public void rotate() {
-        // Нарушение ISP, так как круг не имеет смысла вращаться
+
         throw new UnsupportedOperationException("Круг не может вращаться");
     }
 }
