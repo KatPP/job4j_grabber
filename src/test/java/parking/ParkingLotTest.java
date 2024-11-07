@@ -109,7 +109,6 @@ class SimpleParkingPlace implements ParkingPlace {
     }
 }
 
-
 class SimpleParkingLot implements ParkingLot {
     private final ParkingPlace[] parkingPlaces;
 
