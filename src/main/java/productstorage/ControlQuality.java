@@ -22,11 +22,11 @@ public class ControlQuality {
             var optionalStore = stores.stream()
                     .filter(s -> s.isSuitableFood(food))
                     .findFirst();
+
             if (optionalStore.isEmpty()) {
                 throw new IllegalStateException(String.format("No suitable store for food: %s", food));
-            } else {
-                addFoodToStore(optionalStore.get(), food);
             }
+            addFoodToStore(optionalStore.get(), food);
         });
     }
 
