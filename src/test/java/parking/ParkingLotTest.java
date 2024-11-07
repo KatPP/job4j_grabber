@@ -70,3 +70,82 @@ class ParkingLotTest {
         assertEquals(4, parkingLot.getAvailableSpots());
     }
 }
+
+
+record SimpleCar(String licensePlate, int size) implements Car {
+}
+
+class SimpleParkingPlace implements ParkingPlace {
+    private final int size;
+    private Car parkedCar;
+
+    public SimpleParkingPlace(int size) {
+        this.size = size;
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return parkedCar == null;
+    }
+
+    @Override
+    public void parkCar(Car car) {
+        parkedCar = car;
+    }
+
+    @Override
+    public void removeCar() {
+        parkedCar = null;
+    }
+
+    @Override
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public Car getParkedCar() {
+        return parkedCar;
+    }
+}
+
+
+class SimpleParkingLot implements ParkingLot {
+    private final ParkingPlace[] parkingPlaces;
+
+    public SimpleParkingLot(ParkingPlace[] parkingPlaces) {
+        this.parkingPlaces = parkingPlaces;
+    }
+
+    @Override
+    public boolean park(Car car) {
+        for (ParkingPlace place : parkingPlaces) {
+            if (place.isAvailable() && place.getSize() >= car.size()) {
+                place.parkCar(car);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void remove(Car car) {
+        for (ParkingPlace place : parkingPlaces) {
+            if (place.getParkedCar() != null && place.getParkedCar().licensePlate().equals(car.licensePlate())) {
+                place.removeCar();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int getAvailableSpots() {
+        int count = 0;
+        for (ParkingPlace place : parkingPlaces) {
+            if (place.isAvailable()) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
