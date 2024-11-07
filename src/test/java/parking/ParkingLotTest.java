@@ -58,16 +58,15 @@ class ParkingLotTest {
         parkingLot.park(car1);
         assertEquals(4, parkingLot.getAvailableSpots());
 
-        // Пытаемся удалить автомобиль, который не припаркован
         Car car2 = new SimpleCar("XYZ789", 1);
-        parkingLot.remove(car2); // Должно завершиться без ошибок
-        assertEquals(4, parkingLot.getAvailableSpots()); // Доступные места не должны измениться
+        parkingLot.remove(car2);
+        assertEquals(4, parkingLot.getAvailableSpots());
     }
 
     @Test
     void testParkTruckOnTruckSpot() {
-        Car truck = new SimpleCar("TRUCK1", 2); // грузовая машина
-        assertTrue(parkingLot.park(truck)); // Должно успешно припарковаться
-        assertEquals(4, parkingLot.getAvailableSpots()); // Доступные места должны уменьшиться на 1
+        Car truck = new SimpleCar("TRUCK1", 2);
+        assertTrue(parkingLot.park(truck));
+        assertEquals(4, parkingLot.getAvailableSpots());
     }
 }
