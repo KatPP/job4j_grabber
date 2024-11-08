@@ -1,5 +1,6 @@
 package productstorage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -9,7 +10,7 @@ public class ControlQuality {
 
     public ControlQuality(List<AbstractStore> stores) {
         this.stores = stores;
-        discounter = new DefaultDiscounter();
+        this.discounter = new DefaultDiscounter();
     }
 
     public ControlQuality(List<AbstractStore> stores, Consumer<Food> discounter) {
@@ -22,12 +23,20 @@ public class ControlQuality {
             var optionalStore = stores.stream()
                     .filter(s -> s.isSuitableFood(food))
                     .findFirst();
-
             if (optionalStore.isEmpty()) {
                 throw new IllegalStateException(String.format("No suitable store for food: %s", food));
             }
             addFoodToStore(optionalStore.get(), food);
         });
+    }
+
+    public void resort() {
+        List<Food> allFoods = new ArrayList<>();
+        for (AbstractStore store : stores) {
+            allFoods.addAll(store.getFoods());
+            store.clear();
+        }
+        distributeFood(allFoods);
     }
 
     public List<AbstractStore> getStores() {

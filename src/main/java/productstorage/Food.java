@@ -15,7 +15,7 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.createDate = createDate;
-        this.price = price;
+        setPrice(price);
         this.discount = 1d;
     }
 

@@ -28,4 +28,8 @@ public abstract class AbstractStore {
     public boolean isSuitableFood(Food food) {
         return foodConditions.test(food);
     }
+
+    public void clear() {
+        foods.clear();
+    }
 }
