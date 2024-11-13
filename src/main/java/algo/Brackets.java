@@ -28,8 +28,8 @@ class Brackets {
     }
 
     private boolean isMatchingPair(char open, char close) {
-        return (open == '(' && close == ')') ||
-                (open == '{' && close == '}') ||
-                (open == '[' && close == ']');
+        return (open == '(' && close == ')')
+                || (open == '{' && close == '}')
+                || (open == '[' && close == ']');
     }
 }
