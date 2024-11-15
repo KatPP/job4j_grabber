@@ -29,9 +29,9 @@ public class Recursion {
 
     public long factorialRecursion(long index) {
         if (index == 0) {
-            return 1; // База рекурсии: 0! = 1
+            return 1;
         }
-        return index * factorialRecursion(index - 1); // Рекурсивный вызов
+        return index * factorialRecursion(index - 1);
     }
 
     public long fibonacciLoop(int n) {
@@ -52,10 +52,10 @@ public class Recursion {
 
     public long fibonacciRecursion(int n) {
         if (n == 0) {
-            return 0; // База рекурсии: F(0) = 0
+            return 0;
         } else if (n == 1) {
-            return 1; // База рекурсии: F(1) = 1
+            return 1;
         }
-        return fibonacciRecursion(n - 1) + fibonacciRecursion(n - 2); // Рекурсивный вызов
+        return fibonacciRecursion(n - 1) + fibonacciRecursion(n - 2);
     }
 }
