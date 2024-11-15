@@ -57,7 +57,7 @@ class TreeAVLMapTest {
     void whenAddDuplicateKeyThenUpdateValue() {
         TreeAVLMap<Integer, String> tree = new TreeAVLMap<>();
         assertThat(tree.put(1, "11")).isTrue();
-        assertThat(tree.put(1, "111")).isFalse(); // Обновление значения
+        assertThat(tree.put(1, "111")).isFalse();
         assertThat(tree.get(1)).isEqualTo("111");
     }
 
@@ -67,7 +67,7 @@ class TreeAVLMapTest {
         tree.put(2, "22");
         tree.put(1, "11");
         tree.put(3, "33");
-        assertThat(tree.remove(2)).isTrue(); // Удаление корня
+        assertThat(tree.remove(2)).isTrue();
         assertThat(tree.get(2)).isNull();
         assertThat(tree.keySet()).containsExactly(1, 3);
     }
@@ -77,7 +77,7 @@ class TreeAVLMapTest {
         TreeAVLMap<Integer, String> tree = new TreeAVLMap<>();
         tree.put(1, "11");
         tree.put(2, "22");
-        assertThat(tree.remove(3)).isFalse(); // Попытка удалить несуществующий ключ
+        assertThat(tree.remove(3)).isFalse();
         assertThat(tree.keySet()).containsExactly(1, 2);
     }
 
