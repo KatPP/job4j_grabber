@@ -6,7 +6,6 @@ import java.util.List;
 
 public class BankMaxLoadTime {
     public static int[] findMaxLoadTime(List<int[]> visitTimes) {
-
         List<Event> events = new ArrayList<>();
 
         for (int[] time : visitTimes) {
