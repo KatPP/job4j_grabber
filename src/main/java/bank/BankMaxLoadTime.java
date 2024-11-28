@@ -6,6 +6,7 @@ import java.util.List;
 
 public class BankMaxLoadTime {
     public static int[] findMaxLoadTime(List<int[]> visitTimes) {
+
         List<Event> events = new ArrayList<>();
 
         for (int[] time : visitTimes) {
@@ -45,6 +46,7 @@ public class BankMaxLoadTime {
     }
 
     static class Event implements Comparable<Event> {
+
         int time;
         EventType type;
 
